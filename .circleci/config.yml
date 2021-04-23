@@ -33,8 +33,7 @@ jobs:
           command: npm install cypress --save-dev
       - run:
           name: run cypress
-          command: npm run test:ci
-
+          command: npm run test
 
 workflows:
   version: 2.1

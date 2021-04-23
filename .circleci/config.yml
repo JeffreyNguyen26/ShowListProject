@@ -1,0 +1,31 @@
+version: 2.1
+jobs:
+  build:
+    resource_class: medium
+    machine:   
+      image: ubuntu-1604-cuda-11.1:202012-01
+    steps:
+      - checkout
+      - run: 
+          name: clean cache
+          command: npm cache clean --force
+            
+      - run:
+          name: npm install
+          command: npm install --save env-ci
+
+      - run:
+          name: build
+          command: npm run-script build
+
+      - store_artifacts:
+          path: build/static/
+          destination: BuildResult
+          
+workflows:
+  version: 2.1
+  workflow:
+    jobs:
+    - build
+      # - deploy
+

@@ -33,10 +33,10 @@ jobs:
           command: npm install cypress --save-dev
       - run:
           name: Run project
-          command: npm start &  npx cypress run --spec "./cypress/integration/test_login.js"
-      # - run:
-      #     name: run cypress
-      #     command: npx cypress run --spec "./cypress/integration/test_login.js"
+          command: npm start 
+      - run:
+          name: run cypress
+          command: npx cypress run --spec "./cypress/integration/test_login.js"
       - store_artifacts:
           path: cypress
           destination: TestResult

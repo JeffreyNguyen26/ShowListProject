@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-04-23T11:19:10.948Z",
+    "end": "2021-04-23T11:19:26.298Z",
+    "duration": 15350,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7a7f9654-a311-4d59-bd11-6aac5d80c991",
+      "title": "",
+      "fullFile": "cypress/integration/test_login.js",
+      "file": "cypress/integration/test_login.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "aeaa290b-c65e-4552-b8ee-a6a10219604f",
+          "title": "Test login 2",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "logs in programmatically without using the UI",
+              "fullTitle": "Test login 2 logs in programmatically without using the UI",
+              "timedOut": null,
+              "duration": 13656,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// destructuring assignment of the this.currentUser object\nconst username = \"ThangNLD\";\nconst password = \"zaq@123\";\nvar jwt = \"DRACK\"; // cy.get(\"Form\");\n// cy.get(\"Form\").submit();\n// programmatically log us in without needing the UI\ncy.request(\"POST\", \"http://toan0701.ddns.net:9080/Nococid/api/Auth/login\", {\n  username,\n  password\n}).then(response => {\n  window.localStorage.setItem(\"user\", username);\n  window.localStorage.setItem(\"jwt\", response.body.jwt); // localStorage.setItem(jwt, response.body.jwt);\n  cy.visit(\"http://localhost:3000/home\");\n  cy.wait(1000);\n  cy.window().then(window => console.log(window.localStorage.getItem(\"user\")));\n  cy.window().then(() => console.log(localStorage.getItem(jwt)));\n  const logout = \"Bearer \" + response.body.jwt;\n  cy.wait(1000);\n  cy.request({\n    method: \"POST\",\n    url: \"http://toan0701.ddns.net:9080/Nococid/api/Auth/logout\",\n    headers: {\n      Authorization: logout\n    }\n  });\n  cy.clearLocalStorage();\n  cy.visit(\"http://localhost:3000\");\n});",
+              "err": {},
+              "uuid": "68b11123-787c-426e-9626-c8f5ccf7e180",
+              "parentUUID": "aeaa290b-c65e-4552-b8ee-a6a10219604f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "68b11123-787c-426e-9626-c8f5ccf7e180"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13656,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

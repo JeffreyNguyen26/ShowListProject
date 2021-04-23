@@ -1,0 +1,166 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-04-23T11:15:54.997Z",
+    "end": "2021-04-23T11:19:26.298Z",
+    "duration": 30343,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7a7f9654-a311-4d59-bd11-6aac5d80c991",
+      "title": "",
+      "fullFile": "cypress/integration/test_login.js",
+      "file": "cypress/integration/test_login.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "aeaa290b-c65e-4552-b8ee-a6a10219604f",
+          "title": "Test login 2",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "logs in programmatically without using the UI",
+              "fullTitle": "Test login 2 logs in programmatically without using the UI",
+              "timedOut": null,
+              "duration": 13656,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// destructuring assignment of the this.currentUser object\nconst username = \"ThangNLD\";\nconst password = \"zaq@123\";\nvar jwt = \"DRACK\"; // cy.get(\"Form\");\n// cy.get(\"Form\").submit();\n// programmatically log us in without needing the UI\ncy.request(\"POST\", \"http://toan0701.ddns.net:9080/Nococid/api/Auth/login\", {\n  username,\n  password\n}).then(response => {\n  window.localStorage.setItem(\"user\", username);\n  window.localStorage.setItem(\"jwt\", response.body.jwt); // localStorage.setItem(jwt, response.body.jwt);\n  cy.visit(\"http://localhost:3000/home\");\n  cy.wait(1000);\n  cy.window().then(window => console.log(window.localStorage.getItem(\"user\")));\n  cy.window().then(() => console.log(localStorage.getItem(jwt)));\n  const logout = \"Bearer \" + response.body.jwt;\n  cy.wait(1000);\n  cy.request({\n    method: \"POST\",\n    url: \"http://toan0701.ddns.net:9080/Nococid/api/Auth/logout\",\n    headers: {\n      Authorization: logout\n    }\n  });\n  cy.clearLocalStorage();\n  cy.visit(\"http://localhost:3000\");\n});",
+              "err": {},
+              "uuid": "68b11123-787c-426e-9626-c8f5ccf7e180",
+              "parentUUID": "aeaa290b-c65e-4552-b8ee-a6a10219604f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "68b11123-787c-426e-9626-c8f5ccf7e180"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13656,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "3a212673-6c37-414e-9d10-38c8b4fb6f52",
+      "title": "",
+      "fullFile": "cypress/integration/test_login.js",
+      "file": "cypress/integration/test_login.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "73ac3f4b-cdf9-4b56-9a9f-1654af02305a",
+          "title": "Test login 2",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "logs in programmatically without using the UI",
+              "fullTitle": "Test login 2 logs in programmatically without using the UI",
+              "timedOut": null,
+              "duration": 16687,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// destructuring assignment of the this.currentUser object\nconst username = \"ThangNLD\";\nconst password = \"zaq@123\";\nvar jwt = \"DRACK\"; // cy.get(\"Form\");\n// cy.get(\"Form\").submit();\n// programmatically log us in without needing the UI\ncy.request(\"POST\", \"http://toan0701.ddns.net:9080/Nococid/api/Auth/login\", {\n  username,\n  password\n}).then(response => {\n  window.localStorage.setItem(\"user\", username);\n  window.localStorage.setItem(\"jwt\", response.body.jwt); // localStorage.setItem(jwt, response.body.jwt);\n  cy.visit(\"http://localhost:3000/home\");\n  cy.wait(1000);\n  cy.window().then(window => console.log(window.localStorage.getItem(\"user\")));\n  cy.window().then(() => console.log(localStorage.getItem(jwt)));\n  const logout = \"Bearer \" + response.body.jwt;\n  cy.wait(1000);\n  cy.request({\n    method: \"POST\",\n    url: \"http://toan0701.ddns.net:9080/Nococid/api/Auth/logout\",\n    headers: {\n      Authorization: logout\n    }\n  });\n  cy.clearLocalStorage();\n  cy.visit(\"http://localhost:3000\");\n});",
+              "err": {
+                "message": "Error: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > Network Error\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "Error: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > Network Error\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at createError (http://localhost:3000/static/js/vendors~main.chunk.js:40040:15)\n    at XMLHttpRequest.handleError (http://localhost:3000/static/js/vendors~main.chunk.js:39534:14)",
+                "diff": null
+              },
+              "uuid": "8e9bbb24-6c18-4a7d-8983-281f9f841044",
+              "parentUUID": "73ac3f4b-cdf9-4b56-9a9f-1654af02305a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "8e9bbb24-6c18-4a7d-8983-281f9f841044"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 16687,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

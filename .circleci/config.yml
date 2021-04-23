@@ -59,9 +59,9 @@ jobs:
       #     path: cypress/videos
       #     destination: TestVideoResult
       - store_test_results:
-          path: TestReport
+          path: mochaawesome-report
       - store_artifacts:
-          path: TestReport
+          path: mochaawesome-report
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:

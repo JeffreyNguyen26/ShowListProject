@@ -37,12 +37,20 @@ jobs:
       # - run:
       #     name: run cypress
       #     command: npx cypress run --spec "./cypress/integration/test_login.js"
+      # - store_artifacts:
+      #     path: cypress/integration
+      #     destination: TestResult
+      # - store_artifacts:
+      #     path: cypress/videos
+      #     destination: TestVideoResult
+      - store_test_results:
+          path: integration-tests/test-results
       - store_artifacts:
-          path: cypress/integration
-          destination: TestResult
+          path: integration-tests/test-results
       - store_artifacts:
-          path: cypress/videos
-          destination: TestVideoResult
+          path: integration-tests/cypress/videos
+      - store_artifacts:
+          path: integration-tests/cypress/screenshots
 
 workflows:
   version: 2.1

@@ -32,14 +32,17 @@ jobs:
           name: install cypress
           command: npm install cypress --save-dev
       - run:
-          name: Run project
+          name: Run project and Test
           command: npm start & npx cypress run --spec "./cypress/integration/test_login.js"
       # - run:
       #     name: run cypress
       #     command: npx cypress run --spec "./cypress/integration/test_login.js"
       - store_artifacts:
-          path: cypress
+          path: cypress/integration
           destination: TestResult
+      - store_artifacts:
+          path: cypress/videos
+          destination: TestVideoResult
 
 workflows:
   version: 2.1

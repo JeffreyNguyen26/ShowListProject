@@ -32,8 +32,14 @@ jobs:
           name: install cypress
           command: npm install cypress --save-dev
       - run:
+          name: Install mocha
+          command: npm i --D mocha mochawesome mochawesome-merge mochawesome-report-generator
+      - run:
           name: Run project and Test
           command: npm start & npx cypress run --spec "./cypress/integration/test_login.js"
+      - run:
+          name: Create report
+          command: npm run generate:html:report
       # - run:
       #     name: run cypress
       #     command: npx cypress run --spec "./cypress/integration/test_login.js"
@@ -44,13 +50,13 @@ jobs:
       #     path: cypress/videos
       #     destination: TestVideoResult
       - store_test_results:
-          path: integration-tests/test-results
+          path: TestReport
       - store_artifacts:
-          path: integration-tests/test-results
+          path: TestReport
       - store_artifacts:
-          path: integration-tests/cypress/videos
+          path: cypress/videos
       - store_artifacts:
-          path: integration-tests/cypress/screenshots
+          path: cypress/videos
 
 workflows:
   version: 2.1

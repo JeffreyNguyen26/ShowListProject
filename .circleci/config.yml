@@ -34,12 +34,14 @@ jobs:
       - run:
           name: Install mocha
           command: npm i --D mocha mochawesome mochawesome-merge mochawesome-report-generator
-      - run:
-          name: Create report
-          command: npm run generate:html:report
+      # - run:
+      #     name: Create report
+      #     command: npm run generate:html:report
       - run:
           name: Run project and Test
-          command: npm start & npx cypress run --spec "./cypress/integration/test_login.js"
+          command: |
+            npm start & npx cypress run --spec "./cypress/integration/test_login.js"
+            npm run generate:html:report
 
       # - run:
       #     name: run cypress

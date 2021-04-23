@@ -21,12 +21,16 @@ jobs:
       - store_artifacts:
           path: build/static/
           destination: BuildResult
+
   test:
     resource_class: medium
     machine:   
       image: ubuntu-1604-cuda-11.1:202012-01
     steps:
       - checkout
+      - run:
+          name: install cypress
+          command: npm install cypress --save-dev
       - run:
           name: run cypress
           command: npm cypress run

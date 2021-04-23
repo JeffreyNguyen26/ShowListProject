@@ -33,7 +33,7 @@ jobs:
           command: npm install cypress --save-dev
       - run:
           name: run cypress
-          command: npx cypress run
+          command: .bin/cypress run --spec "cypress/integration/test_login.js"
 
 
 workflows:

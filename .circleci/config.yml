@@ -45,7 +45,7 @@ jobs:
             npm install --dev mochawesome-merge
       - run:
           name: list
-          command: -ls -a
+          command: -ls 
       # - run:
       #     name: Run project and Test
       #     command: |

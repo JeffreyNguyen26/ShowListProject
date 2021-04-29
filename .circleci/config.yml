@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Group
           when: always
-          command: cypress run  --record --tag "staging"
+          command: npx cypress run  --record --tag "staging"
       # - run:
       #     name: run cypress
       #     command: npx cypress run --spec "./cypress/integration/test_login.js"

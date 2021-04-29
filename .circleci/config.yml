@@ -45,20 +45,15 @@ jobs:
       #       npm install --dev mochawesome-merge
 
       - run:
-          name: Group
-          command: | 
-            record
-            group 'default group'
-
-      - run:
           name: list
           command: ls 
-      # - run:
-      #     name: Run project and Test
-      #     command: |
-      #       npm start & npx cypress run --spec "./cypress/integration/test_login.js"
-      #       npm run generate:html:report
+      - run:
+          name: Run project and Test
+          command: npm start & npx cypress run --spec "./cypress/integration/test_login.js"
 
+      - run:
+          name: Group
+          command: cypress run  --record --tag "staging"
       # - run:
       #     name: run cypress
       #     command: npx cypress run --spec "./cypress/integration/test_login.js"

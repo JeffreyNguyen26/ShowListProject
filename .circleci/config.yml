@@ -37,12 +37,19 @@ jobs:
       # - run:
       #     name: Create report
       #     command: npm run generate:html:report
+      # - run:
+      #     name: Install
+      #     command: |
+      #       npm install --dev mocha
+      #       npm install --dev mochawesome
+      #       npm install --dev mochawesome-merge
+
       - run:
-          name: Install
-          command: |
-            npm install --dev mocha
-            npm install --dev mochawesome
-            npm install --dev mochawesome-merge
+          name: Group
+          command: | 
+            --record
+            --group 'default group'
+
       - run:
           name: list
           command: ls 

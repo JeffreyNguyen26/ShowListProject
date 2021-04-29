@@ -47,8 +47,8 @@ jobs:
       - run:
           name: Group
           command: | 
-            --record
-            --group 'default group'
+            record
+            group 'default group'
 
       - run:
           name: list

@@ -27,30 +27,42 @@ jobs:
     steps:
       - checkout
       - run: 
+          name: Read file setup-heroku.sh
+          command: |
+              cat  \<<-EOF >> ~/.netrc
+              machine api.heroku.com
+              login thangnldse62897@fpt.edu.vn
+              password a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae
+              machine git.heroku.com
+              login thangnldse62897@fpt.edu.vn
+              password a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae
+              EOF
+      - run: 
           name: git remote
           command: git remote -v
 
-      - run:  
-          name: git delete branch 
-          command: git branch -D main
+      # - run:  
+      #     name: git delete branch 
+      #     command: git branch -D main
       - run: 
           name: git remote set-url 
           # command: git remote set-url heroku https://git.heroku.com/showlistproject.git git@heroku.com:showlistproject.git
-          command: git remote add heroku https://git.heroku.com/showlistproject.git
+          command: git remote add heroku https://git.heroku.com/test-deploy-showlistproject.git
 
+      # - run:
+      #     name: Deploy Master to Heroku
+      #     command: |
+      #       git push https://heroku:a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae@git.heroku.com/showlistproject.git main
       - run:
           name: Deploy Master to Heroku
-          command: |
-            git push https://heroku:a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae@git.heroku.com/showlistproject.git main
+          command: git push -f heroku HEAD:main
 
 workflows:
   version: 2.1
   workflow:
     jobs:
-     - build
-     - deploy:
-        requires:
-          - build
+    #  - build
+     - deploy
 
 
 

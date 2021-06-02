@@ -12,8 +12,7 @@ jobs:
             
       - run:
           name: npm install
-          command: npm install --save env-ci
-
+          command: npm install
       - run:
           name: build
           command: npm run-script build
@@ -41,13 +40,17 @@ jobs:
 
       - run:
           name: Deploy Master to Heroku
-          # command: git push -f heroku HEAD:main
-          command: git push https://heroku:a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae@git.heroku.com/showlistproject.git main
+          command: |
+            git push https://heroku:a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae@git.heroku.com/git.heroku.com/showlistproject.git main
 
 workflows:
   version: 2.1
   workflow:
     jobs:
      - build
-     - deploy
+     - deploy:
+        requires:
+          - build
+
+
 

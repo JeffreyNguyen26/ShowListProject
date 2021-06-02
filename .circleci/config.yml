@@ -22,62 +22,32 @@ jobs:
           path: build/static/
           destination: BuildResult
 
-  test:
-    resource_class: medium
+  deploy:
     machine:   
       image: ubuntu-1604-cuda-11.1:202012-01
     steps:
       - checkout
-      - run:
-          name: install cypress
-          command: npm install cypress --save-dev
-      # - run:
-      #     name: Install mocha
-      #     command: npm i --D mocha mochawesome mochawesome-merge mochawesome-report-generator
-      # - run:
-      #     name: Create report
-      #     command: npm run generate:html:report
-      # - run:
-      #     name: Install
-      #     command: |
-      #       npm install --dev mocha
-      #       npm install --dev mochawesome
-      #       npm install --dev mochawesome-merge
+      - run: 
+          name: git remote
+          command: git remote -v
+
+      - run:  
+          name: git delete branch 
+          command: git branch -D main
+      - run: 
+          name: git remote set-url 
+          # command: git remote set-url heroku https://git.heroku.com/showlistproject.git git@heroku.com:showlistproject.git
+          command: git remote add heroku https://git.heroku.com/showlistproject.git
 
       - run:
-          name: list
-          command: ls 
-      - run:
-          name: Run project and Test
-          command: npm start & npx cypress run --spec "./cypress/integration/test_login.js"
-
-      - run:
-          name: Group
-          when: always
-          command: npx cypress run  --record --tag "staging"
-      # - run:
-      #     name: run cypress
-      #     command: npx cypress run --spec "./cypress/integration/test_login.js"
-      # - store_artifacts:
-      #     path: cypress/integration
-      #     destination: TestResult
-      # - store_artifacts:
-      #     path: cypress/videos
-      #     destination: TestVideoResult
-      # - store_test_results:
-      #     path: mochaawesome-report
-      # - store_artifacts:
-      #     path: mochaawesome-report
-      # - store_artifacts:
-      #     path: cypress/videos
-      # - store_artifacts:
-      #     path: cypress/videos
+          name: Deploy Master to Heroku
+          # command: git push -f heroku HEAD:main
+          command: git push https://heroku:a8f4f414-8b90-4f3a-aa4d-6dc7e35fceae@git.heroku.com/showlistproject.git main
 
 workflows:
   version: 2.1
   workflow:
     jobs:
-    # - build
-    - test
-      # - deploy
+     - build
+     - deploy
 
